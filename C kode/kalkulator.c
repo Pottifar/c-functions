@@ -1,21 +1,27 @@
 #include <stdio.h>
 
-int main(){
+// Function prototypes
+int add(int num1, int num2);
+int sub(int num1, int num2);
+int div(int num1, int num2);
+int mul(int num1, int num2);
+
+int main() {
     int operation;
     int num1;
     int num2;
     int res;
 
-    printf("Choose operaion:\nAdd: 1, Sub: 2, Div: 3, Mul: 4\n");
-    scanf("%s", operation);
+    printf("Choose operation:\nAdd: 1, Sub: 2, Div: 3, Mul: 4\n");
+    scanf("%d", &operation);
 
     printf("Number 1:\n");
-    scanf("%d", num1);
+    scanf("%d", &num1);
 
     printf("Number 2:\n");
-    scanf("%d", num2);
+    scanf("%d", &num2);
 
-    switch (operation){
+    switch (operation) {
         case 1:
             res = add(num1, num2);
             break;
@@ -23,32 +29,36 @@ int main(){
             res = sub(num1, num2);
             break;
         case 3:
+            if (num2 == 0) {
+                printf("Division by zero is not allowed.\n");
+                return 1;
+            }
             res = div(num1, num2);
             break;
         case 4:
             res = mul(num1, num2);
             break;
+        default:
+            printf("Invalid operation.\n");
+            return 1;
     }
 
-    printf("Result of calculation is:\n%d", res);
+    printf("Result of calculation is: %d\n", res);
+    return 0;
 }
 
-double add(double num1, double num2){
-    double result = num1 + num2;
-    return result;
+int add(int num1, int num2) {
+    return num1 + num2;
 }
 
-double sub(double num1, double num2){
-    double result = num1 - num2;
-    return result;
+int sub(int num1, int num2) {
+    return num1 - num2;
 }
 
-double div(double num1, double num2){
-    double result = num1 / num2;
-    return result;
+int div(int num1, int num2) {
+    return num1 / num2;
 }
 
-double mul(double num1, double num2){
-    double result = num1 * num2;
-    return result;
+int mul(int num1, int num2) {
+    return num1 * num2;
 }
